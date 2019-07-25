@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div id="app">
+    <button @click="handleClick">点我</button>
+    <br/>
+    <input type="text" v-model="num"><button @click="num++">+</button>
+    <h1>
+        <span v-text="name"></span> 非常nice！<br/>
+        {{num}}位女神为他着迷！
+    </h1>
+    <span v-text="name"></span><br/>
+    <span v-html="name"></span>
+    <hr>
+    <h1>XP教育已开设下列课程：</h1>
+    <input type="checkbox" v-model="lessons" value="java">java<br/>
+    <input type="checkbox" v-model="lessons" value="python">python<br/>
+    <input type="checkbox" v-model="lessons" value="php">php<br/>
+
+    <h1>
+        您购买的课程：{{lessons.join(",")}}
+    </h1>
+    <hr>
+    <ul>
+        <li v-for="(u,i) in users">
+            {{i}} {{u.name+","+ u.gender +"," + u.age }}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(v,k,i) in users[0]">{{i+"_"+k+":"+v}}</li>
+    </ul>
+    <ul>
+        <li v-for="i in 5">{{i}}</li>
+    </ul>
+    <hr>
+    <!-- v-if  --->
+    <button @click="show = !show">点击切换</button><br>
+    <h1 v-if="show">
+        你好
+    </h1>
+    <h1 v-show="show">
+        你好
+    </h1>
+    <ul>
+        <li v-for="i in 5">
+            <span v-if="i%2==0">偶数：{{i}}</span>
+            <span v-else style="color: beige">奇数：{{i}}</span>
+        </li>
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name:"杨哥",
+            num:1,
+            lessons: [],
+            users:[
+                {name:'柳岩', gender:'女', age: 21},
+                {name:'杨哥哥', gender:'男', age: 18},
+                {name:'迪丽热巴', gender:'女', age: 24},
+                {name:'玛尔扎哈', gender:'女', age: 18},
+                {name:'古力娜扎', gender:'女', age: 25}
+            ],
+            show:true,
+        },
+        methods:{
+            handleClick(){
+                console.log(this);
+            }
+        },
+        created(){
+            this.name="<font color='#7fffd4'>杨哥</font>真的";
+            // setTimeout(()=>this.name="杨哥真的",1000)
+        }
+    });
+</script>
+</body>
+</html>

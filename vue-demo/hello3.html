@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello3</title>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    <!--  全局组件 一旦全局注册，就意味着即便以后你不再使用这个组件，它依然会随着Vue的加载而加载。  -->
+    // Vue.component("counter",{
+    //     template:"<button @click=\"count++\">点我试试 我记住你了 点了我{{count}}次！</button>",
+    //     data(){
+    //         return{
+    //             count:0,
+    //         }
+    //     }
+    //     }
+    // );
+    //局部组件
+    const counter={
+            template:"<button @click=\"count++\">点我试试 我记住你了 点了我{{count}}次！</button>",
+            data(){
+                return{
+                    count:0,
+                }
+            }
+        }
+    const app = new Vue({
+        el:"#app",
+        data:{
+        },
+        components:{
+            counter
+        }
+    });
+</script>
+</body>
+</html>
